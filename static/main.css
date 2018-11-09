@@ -14,13 +14,27 @@ p {
     margin-left: 10px;
 }
 
+
 .Content-Pane {
-    padding: 0 16px;
+    display: inline-block;
+    max-height: 500px;
+    max-width: 500px;
+    padding: 16px 16px;
     align-content: center;
+    overflow: hidden;
+}
+
+.overwrapper {
+    position: absolute;
+    max-height: 500px;
+    max-width: 700px;
+    padding: 16px 16px;
+    vertical-align: central;
 }
 
 .Main-Button-Container {
     display: block;
+    position: relative;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -29,8 +43,26 @@ p {
 
 }
 
+
+.maincontainer {
+    position: relative;
+    align-self: center;
+
+}
+
+.InnerContent {
+    display: block;
+    max-height: 500px;
+    max-width: 500px;
+    overflow-y: hidden;
+    padding: 17px;
+}
+
 .PageContent {
-    max-height: 200px;
+    display: block;
+    height: 300px;
+    width: 500px;
+    overflow-y: scroll;
 }
 
 .Main-Button {
