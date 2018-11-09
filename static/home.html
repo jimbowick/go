@@ -31,7 +31,12 @@
         <li><a class="Main-Button" id="Content-Change" href="javascript:void(0)">The content</a></li>
         <li><a id="Info-Page" href="javascript:void(0)">Info Button</a></li>
     </ul>
-
+    <form action="">
+        Chat Field: <input type="text" name="msg">
+        <input type="submit" value="Submit">
+    </form>
+    <input type="text" title="coolies" id="msgin">
+    <button onclick="postchatmessage()">Click To send message</button>
 </div>
 <script>
 
@@ -51,24 +56,32 @@
 
     }
     function postchatmessage() {
-        requesty = new XMLHttpRequest()
-        requesty.open('GET','http://localhost:8080/addchat',true)
+        var requesty = new XMLHttpRequest()
+        requesty.onreadystatechange = function(){
+            InfoChanger()
+        }
+        requesty.open('GET','http://192.168.1.12:8080/addchat?msg='
+                +"<br/>"+document.getElementById("msgin").value,
+                true)
         requesty.send()
-
-
     }
 
     function InfoChanger() {
-        requesty = new XMLHttpRequest()
+        var requesty = new XMLHttpRequest()
         requesty.onreadystatechange = function () {
-            document.getElementById("Page-Content").innerText = this.responseText
+            document.getElementById("Page-Content").innerHTML = "Chat log:"
+            // for (i = 0; i < this.responseText.length; i++) {
+                // if( this.responseText.charAt(i-1)=="-"){
+                //     document.getElementById("Page-Content").innerHTML += "<br/>"
+                // }
+                // document.getElementById("Page-Content").innerHTML += this.responseText.charAt(i)
+            // }
+            document.getElementById("Page-Content").innerHTML += this.responseText.toString()
             document.getElementById("Info-Page").className = "active"
         }
-        requesty.open('GET','http://localhost:8080/getchat',true)
+        requesty.open('GET','http://192.168.1.12:8080/getchat',true)
         requesty.send()
-
     }
-
 
 </script>
 </body>

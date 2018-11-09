@@ -1,13 +1,7 @@
 package main
 
 import (
-	"bufio"
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
 	"net/http"
-	"os"
-	"strconv"
 )
 
 type MyJsonName struct {
@@ -22,13 +16,13 @@ type MyJsonName struct {
 
 func main() {
 
-	chatString := "chat: hey everybody"
+	chatString := ""
 
 	http.HandleFunc("/getchat", func(writer http.ResponseWriter, request *http.Request) {
 		writer.Write([]byte(chatString))
 	})
 	http.HandleFunc("/addchat", func(writer http.ResponseWriter, request *http.Request) {
-		chatString = chatString + "someone chatted..."
+		chatString = chatString + request.URL.Query()["msg"][0]
 		//request.URL.Path[1:]
 	})
 
@@ -39,29 +33,29 @@ func main() {
 	})
 	http.ListenAndServe(":8080", nil)
 
-	var theResponse MyJsonName
-	scanner := bufio.NewScanner(os.Stdin)
-	for scanner.Scan() {
-		switch text := scanner.Text(); text {
-		case "usd":
-			fmt.Println(strconv.FormatFloat(theResponse.Rates.Usd, 'f', 4, 64))
-		case "gbp":
-			fmt.Println(strconv.FormatFloat(theResponse.Rates.Gbp, 'f', 4, 64))
-		case "fetch":
-			response, _ := http.Get("https://api.exchangeratesapi.io/latest?base=AUD")
-			data, _ := ioutil.ReadAll(response.Body)
-			json.Unmarshal([]byte(data), &theResponse)
-			fmt.Println(theResponse.Base)
-			fmt.Println(theResponse.Date)
-		case "fetchraw":
-			response, _ := http.Get("https://api.exchangeratesapi.io/latest?base=AUD")
-			data, _ := ioutil.ReadAll(response.Body)
-			fmt.Println(string(data))
-		case "startserving":
-
-		default:
-			fmt.Println("sorry not recognized")
-		}
-	}
+	//var theResponse MyJsonName
+	//scanner := bufio.NewScanner(os.Stdin)
+	//for scanner.Scan() {
+	//	switch text := scanner.Text(); text {
+	//	case "usd":
+	//		fmt.Println(strconv.FormatFloat(theResponse.Rates.Usd, 'f', 4, 64))
+	//	case "gbp":
+	//		fmt.Println(strconv.FormatFloat(theResponse.Rates.Gbp, 'f', 4, 64))
+	//	case "fetch":
+	//		response, _ := http.Get("https://api.exchangeratesapi.io/latest?base=AUD")
+	//		data, _ := ioutil.ReadAll(response.Body)
+	//		json.Unmarshal([]byte(data), &theResponse)
+	//		fmt.Println(theResponse.Base)
+	//		fmt.Println(theResponse.Date)
+	//	case "fetchraw":
+	//		response, _ := http.Get("https://api.exchangeratesapi.io/latest?base=AUD")
+	//		data, _ := ioutil.ReadAll(response.Body)
+	//		fmt.Println(string(data))
+	//	case "startserving":
+	//
+	//	default:
+	//		fmt.Println("sorry not recognized")
+	//	}
+	//}
 
 }

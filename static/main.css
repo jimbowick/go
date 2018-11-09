@@ -29,6 +29,10 @@ p {
 
 }
 
+.PageContent {
+    max-height: 200px;
+}
+
 .Main-Button {
     display: block;
     position: relative;
