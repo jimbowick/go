@@ -1,0 +1,146 @@
+body {
+
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    background-color: lightsteelblue;
+}
+
+h1 {
+    color: midnightblue;
+    margin-left: 10px;
+}
+
+p {
+    min-height: 200px;
+    margin-left: 10px;
+}
+
+.Content-Pane {
+    padding: 0 16px;
+    align-content: center;
+}
+
+.Main-Button-Container {
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+
+}
+
+.Main-Button {
+    display: block;
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin: 0;
+    overflow: hidden;
+    background-color: #333;
+
+}
+
+ul {
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float:left;
+}
+
+li a, .DropBtn {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .DropDown:hover .DropBtn {
+    background-color: black;
+}
+
+li.DropDown {
+    display: block;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+li a.active {
+    display: block;
+    background-color: midnightblue;
+}
+
+li.right {
+    float: right;
+}
+
+li.DropDown {
+    display: block;
+}
+
+
+.Dropdown-Content {
+    display: none;
+    position: absolute;
+    background-color: darkslategrey;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.Dropdown-Content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.Dropdown-Content a:hover {
+    background-color: #f1f1f1
+}
+
+.DropDown:hover .Dropdown-Content {
+    display: block;
+}
+
+@media screen and (max-width: 600px){
+    ul li.right,
+    ul li {
+        float: none;
+    }
+}
+
+li a:hover, .Dropdown-Content a:hover {
+    background-color: red;
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 4s;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+    0%   {background-color: darkslategrey;}
+    25%  {background-color: black;}
+    50%  {background-color: navy;}
+    100% {background-color: green;}
+}
+
+/* Standard syntax */
+@keyframes example {
+    0%   {background-color: darkslategrey;}
+    25%  {background-color: black;}
+    50%  {background-color: navy;}
+    100% {background-color: green;}
+}

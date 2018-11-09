@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <title>Title</title>
+</head>
+<body>
+<ul id="NavBar">
+    <li><a id="Home" class="active" href="javascript:void(0)">Home</a></li>
+    <li><a id="News" href="javascript:void(0)">News</a></li>
+    <li><a id="Contact" href="javascript:void(0)">Contact</a></li>
+    <li class="DropDown">
+        <a href="javascript:void(0)" class="DropBtn">About</a>
+        <div class="Dropdown-Content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+        </div>
+</ul>
+
+<div id="Content-Pane">
+    <h1>Page Content</h1>
+    <p id="Page-Content">The main page content appears inside the <strong>body</strong> tag. There is absolutely no way
+        that you can resist
+        and offer with this kind of potential. If you think carefully, you'll realise that you've never had an
+        opportunity like this
+        and you may next have another.</p>
+    <ul class="Main-Button-Container">
+        <li><a class="Main-Button" id="Content-Change" href="javascript:void(0)">The content</a></li>
+        <li><a id="Info-Page" href="javascript:void(0)">Info Button</a></li>
+    </ul>
+
+</div>
+<script>
+
+    document.getElementById("Content-Change").onclick = function () {
+        // ContentChanger()
+        postchatmessage()
+    }
+
+    document.getElementById("Info-Page").onclick = function () {
+        InfoChanger()
+    }
+
+    function ContentChanger() {
+        document.getElementById("Page-Content").innerText = "This is the the insane content page where all of your content dreams come absolutely true."
+        document.getElementById("Content-Change").className = "active"
+
+
+    }
+    function postchatmessage() {
+        requesty = new XMLHttpRequest()
+        requesty.open('GET','http://localhost:8080/addchat',true)
+        requesty.send()
+
+
+    }
+
+    function InfoChanger() {
+        requesty = new XMLHttpRequest()
+        requesty.onreadystatechange = function () {
+            document.getElementById("Page-Content").innerText = this.responseText
+            document.getElementById("Info-Page").className = "active"
+        }
+        requesty.open('GET','http://localhost:8080/getchat',true)
+        requesty.send()
+
+    }
+
+
+</script>
+</body>
+</html>
